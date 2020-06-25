@@ -2,8 +2,15 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 
+# M : Schéma de donnée
+# V : Manipule les donnée
+# T : Display logic
+
 def home_page(request):
-    return render(request, 'index.html')
+    data = {
+        'titre': "page d'acceuil"
+    }
+    return render(request, 'index.html', data)
 
 
 def about(request):
