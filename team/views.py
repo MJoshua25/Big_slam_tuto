@@ -9,4 +9,4 @@ from django.shortcuts import render
 def home_page(request):
     data = {
     }
-    return render(request, 'index.html', data)
+    return render(request, 'pages/team/index.html', data)
