@@ -10,3 +10,21 @@ def home_page(request):
     data = {
     }
     return render(request, 'pages/team/index.html', data)
+
+
+def contact(request):
+    data = {
+    }
+    return render(request, 'pages/team/contact.html', data)
+
+
+def our_team(request):
+    data = {
+    }
+    return render(request, 'pages/team/our_team.html', data)
+
+
+def schedule(request):
+    data = {
+    }
+    return render(request, 'pages/team/schedule.html', data)
