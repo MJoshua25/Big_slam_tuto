@@ -5,6 +5,10 @@ from django.contrib.auth.models import User
 class Categorie(models.Model):
     libelle = models.CharField(max_length=255)
 
+    status = models.BooleanField(default=True)
+    date_add = models.DateTimeField(auto_now_add=True)
+    date_upd = models.DateTimeField(auto_now=True)
+
     class Meta:
         verbose_name = "Categorie"
         verbose_name_plural = "Categories"
@@ -13,6 +17,10 @@ class Categorie(models.Model):
 
 class Tag(models.Model):
     libelle = models.CharField(max_length=255)
+
+    status = models.BooleanField(default=True)
+    date_add = models.DateTimeField(auto_now_add=True)
+    date_upd = models.DateTimeField(auto_now=True)
 
     class Meta:
         verbose_name = "Tag"
@@ -30,6 +38,10 @@ class Article(models.Model):
     tags = models.ManyToManyField(Tag, related_name='articles')
     date_pub = models.DateTimeField()
 
+    status = models.BooleanField(default=True)
+    date_add = models.DateTimeField(auto_now_add=True)
+    date_upd = models.DateTimeField(auto_now=True)
+
     class Meta:
         verbose_name = "Article"
         verbose_name_plural = "Articles"
@@ -41,6 +53,10 @@ class Commentaire(models.Model):
     email = models.EmailField()
     site = models.URLField()
     contenu = models.TextField()
+
+    status = models.BooleanField(default=True)
+    date_add = models.DateTimeField(auto_now_add=True)
+    date_upd = models.DateTimeField(auto_now=True)
 
     class Meta:
         verbose_name = "Commentaire"
