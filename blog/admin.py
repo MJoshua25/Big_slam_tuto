@@ -52,4 +52,8 @@ class ArticleAdmin(admin.ModelAdmin):
     ]
 
 
-admin.site.register(models.Article, ArticleAdmin)
+def _register(model, admin_class):
+    admin.site.register(model, admin_class)
+
+
+_register(models.Article, ArticleAdmin)
