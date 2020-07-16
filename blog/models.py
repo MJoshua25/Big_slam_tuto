@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Categorie(models.Model):
@@ -17,3 +17,31 @@ class Tag(models.Model):
     class Meta:
         verbose_name = "Tag"
         verbose_name_plural = "Tags"
+
+
+
+class Article(models.Model):
+    auteur = models.ForeignKey(User, related_name='articles', on_delete=models.CASCADE)
+    titre = models.CharField(max_length=255)
+    description = models.TextField()
+    cover = models.ImageField(upload_to='blog/articles/cover')
+    contenu = models.TextField()
+    categorie = models.ForeignKey(Categorie, related_name='articles', on_delete=models.CASCADE)
+    tags = models.ManyToManyField(Tag, related_name='articles')
+    date_pub = models.DateTimeField()
+
+    class Meta:
+        verbose_name = "Article"
+        verbose_name_plural = "Articles"
+
+
+class Commentaire(models.Model):
+    article = models.ForeignKey(Article, related_name='Commentaires', on_delete=models.CASCADE)
+    nom = models.CharField(max_length=255)
+    email = models.EmailField()
+    site = models.URLField()
+    contenu = models.TextField()
+
+    class Meta:
+        verbose_name = "Commentaire"
+        verbose_name_plural = "Commentaires"
