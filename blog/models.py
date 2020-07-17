@@ -13,6 +13,9 @@ class Categorie(models.Model):
         verbose_name = "Categorie"
         verbose_name_plural = "Categories"
 
+    def __str__(self):
+        return str(self.libelle)
+
 
 
 class Tag(models.Model):
@@ -25,6 +28,9 @@ class Tag(models.Model):
     class Meta:
         verbose_name = "Tag"
         verbose_name_plural = "Tags"
+
+    def __str__(self):
+        return str(self.libelle)
 
 
 
@@ -46,6 +52,9 @@ class Article(models.Model):
         verbose_name = "Article"
         verbose_name_plural = "Articles"
 
+    def __str__(self):
+        return '{} {}'.format(self.titre, self.auteur)
+
 
 class Commentaire(models.Model):
     article = models.ForeignKey(Article, related_name='Commentaires', on_delete=models.CASCADE)
@@ -61,3 +70,6 @@ class Commentaire(models.Model):
     class Meta:
         verbose_name = "Commentaire"
         verbose_name_plural = "Commentaires"
+
+    def __str__(self):
+        return '{} {}'.format(self.article, self.nom)
