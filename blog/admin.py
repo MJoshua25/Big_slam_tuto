@@ -69,7 +69,6 @@ class TagAdmin(admin.ModelAdmin):
     ]
 
 
-
 class CommentaireAdmin(admin.ModelAdmin):
     list_display = (
         'nom',
