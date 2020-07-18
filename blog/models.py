@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 # Create your models here.
 class Categorie(models.Model):
     libelle = models.CharField(max_length=255)
@@ -17,7 +18,6 @@ class Categorie(models.Model):
         return str(self.libelle)
 
 
-
 class Tag(models.Model):
     libelle = models.CharField(max_length=255)
 
@@ -31,7 +31,6 @@ class Tag(models.Model):
 
     def __str__(self):
         return str(self.libelle)
-
 
 
 class Article(models.Model):

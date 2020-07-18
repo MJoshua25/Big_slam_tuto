@@ -15,7 +15,9 @@ def home_page(request):
     return render(request, 'pages/blog/index.html', data)
 
 
-def single(request):
+def single(request, article_id):
+    article = models.Article.objects.get(id=article_id)
     data = {
+        'article': article,
     }
     return render(request, 'pages/blog/single.html', data)

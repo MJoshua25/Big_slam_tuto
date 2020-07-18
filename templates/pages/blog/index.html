@@ -24,17 +24,17 @@
                                         {% for article in articles %}
                                         <div class="gdlr-core-item-list gdlr-core-blog-full  gdlr-core-item-pdlr gdlr-core-style-left">
                                             <div class="gdlr-core-blog-thumbnail gdlr-core-media-image  gdlr-core-opacity-on-hover gdlr-core-zoom-on-hover">
-                                                <a href="#"><img src="{% static 'upload/shoes-lebron-nike-spalding-800x362.jpg '%}" width="1280" height="580"  alt="">
+                                                <a href="{% url 'blog:single' article.id %}"><img src="{{ article.cover.url }}" width="1280" height="580"  alt="">
                                                     <div class="gdlr-core-sticky-banner gdlr-core-title-font"><i class="fa fa-bolt"></i>Sticky Post</div>
                                                 </a>
                                             </div>
                                             <div class="gdlr-core-blog-date-wrapper gdlr-core-skin-divider">
-                                                <div class="gdlr-core-blog-date-day gdlr-core-skin-caption">06</div>
-                                                <div class="gdlr-core-blog-date-month gdlr-core-skin-caption">Jun</div>
-                                                <div class="gdlr-core-blog-date-year gdlr-core-skin-caption">2016</div>
+                                                <div class="gdlr-core-blog-date-day gdlr-core-skin-caption">{{ article.date_pub|date:"d" }}</div>
+                                                <div class="gdlr-core-blog-date-month gdlr-core-skin-caption">{{ article.date_pub|date:"M" }}</div>
+                                                <div class="gdlr-core-blog-date-year gdlr-core-skin-caption">{{ article.date_pub|date:"Y" }}</div>
                                             </div>
                                             <div class="gdlr-core-blog-full-content">
-                                                <h3 class="gdlr-core-blog-title gdlr-core-skin-title" style="font-size: 40px ;font-weight: 800 ;letter-spacing: 0px ;"><a href="#">{{ article.titre }}</a></h3>
+                                                <h3 class="gdlr-core-blog-title gdlr-core-skin-title" style="font-size: 40px ;font-weight: 800 ;letter-spacing: 0px ;"><a href="{% url 'blog:single' article.id %}">{{ article.titre }}</a></h3>
                                                 <div class="gdlr-core-blog-info-wrapper gdlr-core-skin-divider">
                                                     <span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-author">
                                                         <span class="gdlr-core-head">
@@ -61,7 +61,7 @@
                                                 </span><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-comment-number"><span class="gdlr-core-head"><i class="fa fa-comments-o"></i></span><a href="#">3 </a></span>
                                                 </div>
                                                 <div class="gdlr-core-blog-content">{{ article.description }}
-                                                    <div class="clear"></div><a class="gdlr-core-excerpt-read-more gdlr-core-button gdlr-core-rectangle" href="#">Read More</a></div>
+                                                    <div class="clear"></div><a class="gdlr-core-excerpt-read-more gdlr-core-button gdlr-core-rectangle" href="{% url 'blog:single' article.id %}">Read More</a></div>
                                             </div>
                                         </div>
                                         {% endfor %}
