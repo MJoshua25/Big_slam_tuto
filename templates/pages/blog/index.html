@@ -6,7 +6,7 @@
                 <div class="bigslam-page-title-overlay"></div>
                 <div class="bigslam-page-title-container bigslam-container">
                     <div class="bigslam-page-title-content bigslam-item-pdlr">
-                        <h1 class="bigslam-page-title">Blog Full Right Sidebar</h1>
+                        <h1 class="bigslam-page-title">Blog</h1>
                         <div class="bigslam-page-caption">Caption Aligned Here</div>
                     </div>
                 </div>
@@ -21,6 +21,7 @@
                             <div class="gdlr-core-pbf-element">
                                 <div class="gdlr-core-blog-item gdlr-core-item-pdb clearfix  gdlr-core-style-blog-full" style="padding-bottom: 40px ;">
                                     <div class="gdlr-core-blog-item-holder gdlr-core-js-2 clearfix" data-layout="fitrows">
+                                        {% for article in articles %}
                                         <div class="gdlr-core-item-list gdlr-core-blog-full  gdlr-core-item-pdlr gdlr-core-style-left">
                                             <div class="gdlr-core-blog-thumbnail gdlr-core-media-image  gdlr-core-opacity-on-hover gdlr-core-zoom-on-hover">
                                                 <a href="#"><img src="{% static 'upload/shoes-lebron-nike-spalding-800x362.jpg '%}" width="1280" height="580"  alt="">
@@ -33,114 +34,37 @@
                                                 <div class="gdlr-core-blog-date-year gdlr-core-skin-caption">2016</div>
                                             </div>
                                             <div class="gdlr-core-blog-full-content">
-                                                <h3 class="gdlr-core-blog-title gdlr-core-skin-title" style="font-size: 40px ;font-weight: 800 ;letter-spacing: 0px ;"><a href="#">This Is An Awesome Sticky Post</a></h3>
-                                                <div class="gdlr-core-blog-info-wrapper gdlr-core-skin-divider"><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-author"><span class="gdlr-core-head"><i class="fa fa-user-o"></i></span><a href="#" title="Posts by John Smith" rel="author">John Smith</a></span><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-category"><span class="gdlr-core-head"><i class="icon_folder-alt"></i></span><a href="#" rel="tag">Blog</a></span><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-tag"><span class="gdlr-core-head"><i class="icon_tags_alt"></i></span><a href="#" rel="tag">Nature</a><span class="gdlr-core-sep">,</span> <a href="#" rel="tag">News</a></span><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-comment-number"><span class="gdlr-core-head"><i class="fa fa-comments-o"></i></span><a href="#">3 </a></span>
+                                                <h3 class="gdlr-core-blog-title gdlr-core-skin-title" style="font-size: 40px ;font-weight: 800 ;letter-spacing: 0px ;"><a href="#">{{ article.titre }}</a></h3>
+                                                <div class="gdlr-core-blog-info-wrapper gdlr-core-skin-divider">
+                                                    <span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-author">
+                                                        <span class="gdlr-core-head">
+                                                            <i class="fa fa-user-o"></i>
+                                                        </span>
+                                                        <a href="#" title="Posts by John Smith" rel="author">{{ article.auteur }}</a>
+                                                    </span>
+                                                    <span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-category">
+                                                        <span class="gdlr-core-head">
+                                                            <i class="icon_folder-alt"></i>
+                                                        </span>
+                                                        <a href="#" rel="tag">{{ article.categorie.libelle }}</a>
+                                                    </span>
+                                                    <span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-tag">
+                                                    <span class="gdlr-core-head">
+                                                        <i class="icon_tags_alt"></i>
+                                                    </span>
+                                                    {% for tag in article.tags.all %}
+                                                    <a href="#" rel="tag">{{ tag.libelle }}</a>
+                                                    {% if not forloop.last %}
+                                                    <span class="gdlr-core-sep">,</span>
+                                                    {% endif %}
+                                                    {% endfor %}
+                                                </span><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-comment-number"><span class="gdlr-core-head"><i class="fa fa-comments-o"></i></span><a href="#">3 </a></span>
                                                 </div>
-                                                <div class="gdlr-core-blog-content">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. I am so happy, my dear friend, so absorbed in the...
+                                                <div class="gdlr-core-blog-content">{{ article.description }}
                                                     <div class="clear"></div><a class="gdlr-core-excerpt-read-more gdlr-core-button gdlr-core-rectangle" href="#">Read More</a></div>
                                             </div>
                                         </div>
-                                        <div class="gdlr-core-item-list gdlr-core-blog-full  gdlr-core-item-pdlr gdlr-core-style-left">
-                                            <div class="gdlr-core-blog-thumbnail gdlr-core-media-gallery">
-                                                <div class="gdlr-core-gallery-shortcode-grid-fixed clearfix">
-                                                    <div class=" gdlr-core-gallery-shortcode-item gdlr-core-media-image  gdlr-core-first">
-                                                        <a class="gdlr-core-ilightbox gdlr-core-js " href="{% static 'upload/shutterstock_231817390.jpg '%}" data-ilightbox-group="gdlr-core-img-group-1" data-type="image"><img src="{% static 'upload/shutterstock_231817390-500x692.jpg '%}" width="500" height="692" alt=""></a>
-                                                    </div>
-                                                    <div class="gdlr-core-gallery-shortcode-item-right">
-                                                        <div class=" gdlr-core-gallery-shortcode-item gdlr-core-media-image  gdlr-core-second">
-                                                            <a class="gdlr-core-ilightbox gdlr-core-js " href="{% static 'upload/shutterstock_109491935.jpg '%}" data-ilightbox-group="gdlr-core-img-group-1" data-type="image"><img src="{% static 'upload/shutterstock_109491935-500x346.jpg '%}" width="500" height="346" alt=""></a>
-                                                        </div>
-                                                        <div class=" gdlr-core-gallery-shortcode-item gdlr-core-media-image  gdlr-core-third">
-                                                            <a class="gdlr-core-ilightbox gdlr-core-js " href="{% static 'upload/shutterstock_247257382.jpg '%}" data-ilightbox-group="gdlr-core-img-group-1" data-type="image"><img src="{% static 'upload/shutterstock_247257382-500x346.jpg '%}" width="500" height="346" alt=""></a>
-                                                        </div>
-                                                        <div class=" gdlr-core-gallery-shortcode-item gdlr-core-media-image  gdlr-core-fourth">
-                                                            <a class="gdlr-core-ilightbox gdlr-core-js " href="{% static 'upload/shutterstock_220438474.jpg '%}" data-ilightbox-group="gdlr-core-img-group-1" data-type="image"><img src="{% static 'upload/shutterstock_220438474-1000x346.jpg '%}" width="1000" height="346" alt=""></a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="gdlr-core-blog-date-wrapper gdlr-core-skin-divider">
-                                                <div class="gdlr-core-blog-date-day gdlr-core-skin-caption">06</div>
-                                                <div class="gdlr-core-blog-date-month gdlr-core-skin-caption">Jun</div>
-                                                <div class="gdlr-core-blog-date-year gdlr-core-skin-caption">2016</div>
-                                            </div>
-                                            <div class="gdlr-core-blog-full-content">
-                                                <h3 class="gdlr-core-blog-title gdlr-core-skin-title" style="font-size: 40px ;font-weight: 800 ;letter-spacing: 0px ;"><a href="#">Gallery Post Format</a></h3>
-                                                <div class="gdlr-core-blog-info-wrapper gdlr-core-skin-divider"><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-author"><span class="gdlr-core-head"><i class="fa fa-user-o"></i></span><a href="#" title="Posts by John Smith" rel="author">John Smith</a></span><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-category"><span class="gdlr-core-head"><i class="icon_folder-alt"></i></span><a href="#" rel="tag">Post Format</a></span><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-tag"><span class="gdlr-core-head"><i class="icon_tags_alt"></i></span><a href="#" rel="tag">Industry</a><span class="gdlr-core-sep">,</span> <a href="#" rel="tag">Nature</a></span><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-comment-number"><span class="gdlr-core-head"><i class="fa fa-comments-o"></i></span><a href="#">3 </a></span>
-                                                </div>
-                                                <div class="gdlr-core-blog-content">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country,...
-                                                    <div class="clear"></div><a class="gdlr-core-excerpt-read-more gdlr-core-button gdlr-core-rectangle" href="#">Read More</a></div>
-                                            </div>
-                                        </div>
-                                        <div class="gdlr-core-item-list gdlr-core-blog-full  gdlr-core-item-pdlr gdlr-core-style-left">
-                                            <div class="gdlr-core-blog-thumbnail gdlr-core-media-image  gdlr-core-opacity-on-hover gdlr-core-zoom-on-hover">
-                                                <a href="#"><img src="{% static 'upload/pexels-photo-119631-800x362.jpeg' %}" width="1280" height="580"  alt=""></a>
-                                            </div>
-                                            <div class="gdlr-core-blog-date-wrapper gdlr-core-skin-divider">
-                                                <div class="gdlr-core-blog-date-day gdlr-core-skin-caption">06</div>
-                                                <div class="gdlr-core-blog-date-month gdlr-core-skin-caption">Jun</div>
-                                                <div class="gdlr-core-blog-date-year gdlr-core-skin-caption">2016</div>
-                                            </div>
-                                            <div class="gdlr-core-blog-full-content">
-                                                <h3 class="gdlr-core-blog-title gdlr-core-skin-title" style="font-size: 40px ;font-weight: 800 ;letter-spacing: 0px ;"><a href="#">Possession of my entire soul</a></h3>
-                                                <div class="gdlr-core-blog-info-wrapper gdlr-core-skin-divider"><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-author"><span class="gdlr-core-head"><i class="fa fa-user-o"></i></span><a href="#" title="Posts by John Smith" rel="author">John Smith</a></span><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-category"><span class="gdlr-core-head"><i class="icon_folder-alt"></i></span><a href="#" rel="tag">Masonry</a></span><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-tag"><span class="gdlr-core-head"><i class="icon_tags_alt"></i></span><a href="#" rel="tag">Industry</a><span class="gdlr-core-sep">,</span> <a href="#" rel="tag">Oil</a></span><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-comment-number"><span class="gdlr-core-head"><i class="fa fa-comments-o"></i></span><a href="#">1 </a></span>
-                                                </div>
-                                                <div class="gdlr-core-blog-content">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. I am so happy, my dear friend, so absorbed in the...
-                                                    <div class="clear"></div><a class="gdlr-core-excerpt-read-more gdlr-core-button gdlr-core-rectangle" href="#">Read More</a></div>
-                                            </div>
-                                        </div>
-                                        <div class="gdlr-core-item-list gdlr-core-blog-full  gdlr-core-item-pdlr gdlr-core-style-left">
-                                            <div class="gdlr-core-blog-thumbnail gdlr-core-media-audio gdlr-core-sync-height-space">
-                                                <div class="gdlr-core-audio">
-                                                    <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
-                                                    <audio class="wp-audio-shortcode" id="audio-1255-1" preload="none" style="width: 100%;" controls="controls">
-                                                        <source type="audio/mpeg" src="{% static 'upload/wm_far_away-1.mp3' %}?_=1"><a href="{% static 'upload/wm_far_away.mp3' %}">https://demo.goodlayers.com/bigslam/wp-content/uploads/2016/06/wm_far_away.mp3</a></audio>
-                                                </div>
-                                            </div>
-                                            <div class="gdlr-core-blog-date-wrapper gdlr-core-skin-divider">
-                                                <div class="gdlr-core-blog-date-day gdlr-core-skin-caption">06</div>
-                                                <div class="gdlr-core-blog-date-month gdlr-core-skin-caption">Jun</div>
-                                                <div class="gdlr-core-blog-date-year gdlr-core-skin-caption">2016</div>
-                                            </div>
-                                            <div class="gdlr-core-blog-full-content">
-                                                <h3 class="gdlr-core-blog-title gdlr-core-skin-title" style="font-size: 40px ;font-weight: 800 ;letter-spacing: 0px ;"><a href="#">Audio Post Format</a></h3>
-                                                <div class="gdlr-core-blog-info-wrapper gdlr-core-skin-divider"><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-author"><span class="gdlr-core-head"><i class="fa fa-user-o"></i></span><a href="#" title="Posts by John Smith" rel="author">John Smith</a></span><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-category"><span class="gdlr-core-head"><i class="icon_folder-alt"></i></span><a href="#" rel="tag">Post Format</a></span><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-tag"><span class="gdlr-core-head"><i class="icon_tags_alt"></i></span><a href="#" rel="tag">Metal</a><span class="gdlr-core-sep">,</span> <a href="#" rel="tag">Polymer</a></span><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-comment-number"><span class="gdlr-core-head"><i class="fa fa-comments-o"></i></span><a href="#">0 </a></span>
-                                                </div>
-                                                <div class="gdlr-core-blog-content">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country,...
-                                                    <div class="clear"></div><a class="gdlr-core-excerpt-read-more gdlr-core-button gdlr-core-rectangle" href="#">Read More</a></div>
-                                            </div>
-                                        </div>
-                                        <div class="gdlr-core-blog-quote-format  gdlr-core-blog-full gdlr-core-large gdlr-core-item-pdlr gdlr-core-item-list">
-                                            <div class="gdlr-core-blog-content">
-                                                <div class="gdlr-core-blog-quote gdlr-core-quote-font">&#8220;</div>
-                                                <div class="gdlr-core-blog-content-wrap">
-                                                    <div class="gdlr-core-blog-quote-content gdlr-core-info-font">
-                                                        <blockquote>
-                                                            <p>The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog. Junk MTV quiz graced by fox whelps. Bawds jog, flick quartz, vex nymphs. Waltz, bad nymph, for quick jigs vex! Fox nymphs grab quick-jived waltz. Brick quiz whangs jumpy veldt fox. Bright vixens jump; dozy fowl quack.</p>
-                                                        </blockquote>
-                                                    </div>
-                                                    <div class="gdlr-core-blog-quote-author gdlr-core-info-font">
-                                                        Oga Mandino</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="gdlr-core-item-list gdlr-core-blog-full  gdlr-core-item-pdlr gdlr-core-style-left">
-                                            <div class="gdlr-core-blog-thumbnail gdlr-core-media-image  gdlr-core-opacity-on-hover gdlr-core-zoom-on-hover">
-                                                <a href="#"><img src="{% static 'upload/shutterstock_109996532-800x362.jpg '%}" width="1280" height="580"  alt=""></a>
-                                            </div>
-                                            <div class="gdlr-core-blog-date-wrapper gdlr-core-skin-divider">
-                                                <div class="gdlr-core-blog-date-day gdlr-core-skin-caption">06</div>
-                                                <div class="gdlr-core-blog-date-month gdlr-core-skin-caption">Jun</div>
-                                                <div class="gdlr-core-blog-date-year gdlr-core-skin-caption">2016</div>
-                                            </div>
-                                            <div class="gdlr-core-blog-full-content">
-                                                <h3 class="gdlr-core-blog-title gdlr-core-skin-title" style="font-size: 40px ;font-weight: 800 ;letter-spacing: 0px ;"><a href="#">I throw myself down among the tall</a></h3>
-                                                <div class="gdlr-core-blog-info-wrapper gdlr-core-skin-divider"><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-author"><span class="gdlr-core-head"><i class="fa fa-user-o"></i></span><a href="#" title="Posts by John Smith" rel="author">John Smith</a></span><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-category"><span class="gdlr-core-head"><i class="icon_folder-alt"></i></span><a href="#" rel="tag">Blog</a></span><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-tag"><span class="gdlr-core-head"><i class="icon_tags_alt"></i></span><a href="#" rel="tag">Metal</a><span class="gdlr-core-sep">,</span> <a href="#" rel="tag">Mining</a><span class="gdlr-core-sep">,</span> <a href="#" rel="tag">Polymer</a></span><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-comment-number"><span class="gdlr-core-head"><i class="fa fa-comments-o"></i></span><a href="#">2 </a></span>
-                                                </div>
-                                                <div class="gdlr-core-blog-content">A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of existence in this spot, which was created for the bliss of souls like mine. I am so happy, my dear friend, so absorbed in the...
-                                                    <div class="clear"></div><a class="gdlr-core-excerpt-read-more gdlr-core-button gdlr-core-rectangle" href="#">Read More</a></div>
-                                            </div>
-                                        </div>
+                                        {% endfor %}
                                     </div>
                                     <div class="gdlr-core-pagination  gdlr-core-style-circle gdlr-core-left-align gdlr-core-item-pdlr"><span aria-current="page" class="page-numbers current">1</span>
                                         <a class="page-numbers" href="page/2/index.htm">2</a>
