@@ -1,5 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
+import hashlib
+from django.utils.text import slugify
+from tinymce import HTMLField
 
 
 # Create your models here.
@@ -36,9 +39,10 @@ class Tag(models.Model):
 class Article(models.Model):
     auteur = models.ForeignKey(User, related_name='articles', on_delete=models.CASCADE)
     titre = models.CharField(max_length=255)
+    titre_slug = models.SlugField(editable=False, null=True, max_length=300)
     description = models.TextField()
     cover = models.ImageField(upload_to='blog/articles/cover')
-    contenu = models.TextField()
+    contenu = HTMLField()
     categorie = models.ForeignKey(Categorie, related_name='articles', on_delete=models.CASCADE)
     tags = models.ManyToManyField(Tag, related_name='articles')
     date_pub = models.DateTimeField()
@@ -53,6 +57,16 @@ class Article(models.Model):
 
     def __str__(self):
         return '{} {}'.format(self.titre, self.auteur)
+
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            super(Article, self).save(*args, **kwargs)
+        e_id = hashlib.md5(str(self.id).encode())
+        self.titre_slug = slugify(self.titre + ' ' + str(e_id.hexdigest()))
+        super(Article, self).save(*args, **kwargs)
+        # prendre le titre
+        # encoder l'id
+        # mettre sous format slug (titre + e_id)
 
 
 class Commentaire(models.Model):

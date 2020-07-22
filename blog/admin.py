@@ -116,6 +116,7 @@ class ArticleAdmin(admin.ModelAdmin):
     list_display = (
         'auteur',
         'titre',
+        'titre_slug',
         'description',
         'categorie',
         'date_pub',
