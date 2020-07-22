@@ -280,7 +280,8 @@
 
                                         <div class="bigslam-top-search-row">
                                             <div class="bigslam-top-search-cell">
-                                                <form role="search" method="get" class="search-form" action="index.html">
+                                                <form role="search" method="get" class="search-form" action="{% url 'blog:home' %}">
+                                                    {% csrf_token %}
                                                     <input type="text" class="search-field bigslam-title-font" placeholder="Search..." value="" name="s">
                                                     <div class="bigslam-top-search-submit"><i class="fa fa-search"></i></div>
                                                     <input type="submit" class="search-submit" value="Search">

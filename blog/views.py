@@ -8,9 +8,17 @@ from . import models
 # T : Display logic
 
 def home_page(request):
-    articles = models.Article.objects.all()
+    articles = models.Article.objects.filter(status=True)
+    sous_text = ''
+    try:
+        s = request.GET.get('s')
+        articles = articles.filter(titre__icontains=s)
+        sous_text = "{} resultats pour la recherche: '{}'".format(articles.count(), s)
+    except:
+        pass
     data = {
-        'articles': articles
+        'articles': articles,
+        'sous_text': sous_text
     }
     return render(request, 'pages/blog/index.html', data)
 
