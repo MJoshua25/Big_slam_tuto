@@ -39,6 +39,18 @@ def home_page(request):
 
 def single(request, titre_slug):
     article = models.Article.objects.get(titre_slug=titre_slug)
+    if request.method == "POST":
+        contenu = request.POST.get('comment')
+        nom = request.POST.get('author')
+        email = request.POST.get('email')
+        site = request.POST.get('url')
+        models.Commentaire.objects.create(
+            article=article,
+            contenu=contenu,
+            nom=nom,
+            email=email,
+            site=site,
+        )
     data = {
         'article': article,
     }

@@ -91,9 +91,6 @@
                                                                     {{ commentaire.date_add|date:"F d, Y à H:i" }}</time>
                                                             </a>
                                                         </div>
-                                                        <div class="comment-reply">
-                                                            <a rel='nofollow' class='comment-reply-link' href='index-1.htm?replytocom=5#respond' data-commentid="5" data-postid="1268" data-belowelement="comment-5" data-respondelement="respond" aria-label='Reply to John Smith'>Reply</a> </div>
-                                                        <!-- reply -->
                                                     </header>
 
                                                     <section class="comment-content">
@@ -111,7 +108,8 @@
                                     </ol>
                                     <div id="respond" class="comment-respond">
                                         <h4 id="reply-title" class="comment-reply-title bigslam-content-font">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="index.htm#respond" style="display:none;">Cancel Reply</a></small></h4>
-                                        <form action="#" method="post" id="commentform" class="comment-form" novalidate="">
+                                        <form action="{% url 'blog:single' article.titre_slug %}" method="post" id="commentform" class="comment-form" novalidate="">
+                                            {% csrf_token %}
                                             <div class="comment-form-comment">
                                                 <textarea id="comment" name="comment" cols="45" rows="8" aria-required="true" placeholder="Comment*"></textarea>
                                             </div>
