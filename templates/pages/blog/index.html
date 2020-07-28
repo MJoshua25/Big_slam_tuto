@@ -58,7 +58,13 @@
                                                     <span class="gdlr-core-sep">,</span>
                                                     {% endif %}
                                                     {% endfor %}
-                                                </span><span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-comment-number"><span class="gdlr-core-head"><i class="fa fa-comments-o"></i></span><a href="#">3 </a></span>
+                                                </span>
+                                                    <span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-comment-number">
+                                                        <span class="gdlr-core-head">
+                                                            <i class="fa fa-comments-o"></i>
+                                                        </span>
+                                                        <a href="{% url 'blog:single' article.titre_slug %}#comments">{{ article.getNbCommentaires }} </a>
+                                                    </span>
                                                 </div>
                                                 <div class="gdlr-core-blog-content">{{ article.description }}
                                                     <div class="clear"></div><a class="gdlr-core-excerpt-read-more gdlr-core-button gdlr-core-rectangle" href="{% url 'blog:single' article.titre_slug %}">Read More</a></div>

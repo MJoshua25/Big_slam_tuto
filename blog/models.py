@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 import hashlib
 from django.utils.text import slugify
+from django.db.models.query import QuerySet
 from tinymce import HTMLField
 
 
@@ -68,9 +69,17 @@ class Article(models.Model):
         # encoder l'id
         # mettre sous format slug (titre + e_id)
 
+    @property
+    def getCommentaires(self) -> QuerySet:
+        return self.commentaires.filter(status=True)
+
+    @property
+    def getNbCommentaires(self) -> int:
+        return self.getCommentaires.count()
+
 
 class Commentaire(models.Model):
-    article = models.ForeignKey(Article, related_name='Commentaires', on_delete=models.CASCADE)
+    article = models.ForeignKey(Article, related_name='commentaires', on_delete=models.CASCADE)
     nom = models.CharField(max_length=255)
     email = models.EmailField()
     site = models.URLField()
