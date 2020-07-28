@@ -11,6 +11,20 @@ def home_page(request):
     articles = models.Article.objects.filter(status=True)
     sous_text = ''
     try:
+        c = request.GET.get('c')
+        if c:
+            articles = articles.filter(categorie__libelle__exact=c)
+            sous_text = "{} articles dans la catégorie : '{}'".format(articles.count(), c)
+    except:
+        pass
+    try:
+        t = request.GET.get('t')
+        if t:
+            articles = articles.filter(tags__libelle__exact=t)
+            sous_text = "{} articles dans la tag : '{}'".format(articles.count(), t)
+    except:
+        pass
+    try:
         s = request.GET.get('s')
         articles = articles.filter(titre__icontains=s)
         sous_text = "{} resultats pour la recherche: '{}'".format(articles.count(), s)

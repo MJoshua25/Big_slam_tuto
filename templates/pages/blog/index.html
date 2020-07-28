@@ -46,14 +46,14 @@
                                                         <span class="gdlr-core-head">
                                                             <i class="icon_folder-alt"></i>
                                                         </span>
-                                                        <a href="#" rel="tag">{{ article.categorie.libelle }}</a>
+                                                        <a href="{% url 'blog:home' %}?c={{ article.categorie.libelle }}" rel="tag">{{ article.categorie.libelle }}</a>
                                                     </span>
                                                     <span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-tag">
                                                     <span class="gdlr-core-head">
                                                         <i class="icon_tags_alt"></i>
                                                     </span>
                                                     {% for tag in article.tags.all %}
-                                                    <a href="#" rel="tag">{{ tag.libelle }}</a>
+                                                    <a href="{% url 'blog:home' %}?t={{ tag.libelle }}" rel="tag">{{ tag.libelle }}</a>
                                                     {% if not forloop.last %}
                                                     <span class="gdlr-core-sep">,</span>
                                                     {% endif %}

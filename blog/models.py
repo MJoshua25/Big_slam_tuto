@@ -7,7 +7,7 @@ from tinymce import HTMLField
 
 # Create your models here.
 class Categorie(models.Model):
-    libelle = models.CharField(max_length=255)
+    libelle = models.CharField(max_length=255, unique=True)
 
     status = models.BooleanField(default=True)
     date_add = models.DateTimeField(auto_now_add=True)
@@ -22,7 +22,7 @@ class Categorie(models.Model):
 
 
 class Tag(models.Model):
-    libelle = models.CharField(max_length=255)
+    libelle = models.CharField(max_length=255, unique=True)
 
     status = models.BooleanField(default=True)
     date_add = models.DateTimeField(auto_now_add=True)
