@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from . import models
 
@@ -55,3 +55,21 @@ def single(request, titre_slug):
         'article': article,
     }
     return render(request, 'pages/blog/single.html', data)
+
+
+def first_api(request):
+    a = models.Article.objects.filter(status=True)
+    data = {
+        'message': 'ça marche',
+        'articles': [{
+            'id': i.id,
+            'titre':i.titre,
+            'titre_slug':i.titre_slug,
+            'cover':i.cover.url
+        } for i in a]
+    }
+    # Create
+    # Read
+    # Update
+    # Delete
+    return JsonResponse(data, safe=False)
