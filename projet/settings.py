@@ -43,6 +43,9 @@ INSTALLED_APPS = [
     # Tinymce
     'tinymce',
     'filebrowser',
+
+    # API
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
