@@ -63,9 +63,9 @@ def first_api(request):
         'message': 'ça marche',
         'articles': [{
             'id': i.id,
-            'titre':i.titre,
-            'titre_slug':i.titre_slug,
-            'cover':i.cover.url
+            'titre': i.titre,
+            'titre_slug': i.titre_slug,
+            'cover': i.cover.url
         } for i in a]
     }
     # Create
