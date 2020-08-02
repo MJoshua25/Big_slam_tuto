@@ -72,4 +72,5 @@ def first_api(request):
     # Read
     # Update
     # Delete
+    # List
     return JsonResponse(data, safe=False)
