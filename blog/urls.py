@@ -1,6 +1,6 @@
 from django.urls import path, include
 from . import views
-from .apiviews import *
+from apiApp.blog.apiviews import *
 from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
@@ -15,5 +15,5 @@ urlpatterns = [
     path('', views.home_page, name='home'),
     path('single/<slug:titre_slug>', views.single, name='single'),
     path('fa', views.first_api, name='fa'),
-    path('api/', include('blog.apiurls'))
+    path('api/', include('apiApp.blog.apiurls'))
 ]
