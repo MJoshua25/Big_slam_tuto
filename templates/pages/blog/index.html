@@ -17,7 +17,7 @@
                 </div>
             </div>
 <div class="bigslam-page-wrapper" id="bigslam-page-wrapper">
-    <div class="bigslam-content-container bigslam-container">
+    <div class="bigslam-content-container bigslam-container" id="app">
         <div class=" bigslam-sidebar-wrap clearfix bigslam-line-height-0 bigslam-sidebar-style-right">
             <div class=" bigslam-sidebar-center bigslam-column-40 bigslam-line-height">
                 <div class="gdlr-core-page-builder-body">
@@ -187,7 +187,10 @@
 {% block vue %}
 <script>
 app=new Vue({
-
+    el:"#app",
+    data: {
+        message:"hello vue"
+    }
 })
 </script>
 {% endblock %}
