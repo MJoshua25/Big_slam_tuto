@@ -24,6 +24,7 @@ urlpatterns = [
     path('', include('team.urls')),
     path('blog/', include('blog.urls')),
     path('tinymce/', include('tinymce.urls')),
+    path('api/', include('apiApp.urls')),
     path('admin/filebrowser/', site.urls),
 ]
 

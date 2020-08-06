@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'team.apps.TeamConfig',
     'blog.apps.BlogConfig',
     'site_config.apps.SiteConfigConfig',
+    'apiApp.apps.ApiappConfig',
 
     # Tinymce
     'tinymce',

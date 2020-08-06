@@ -1,5 +1,10 @@
 {% extends 'base/base.html' %}
 {% load static %}
+
+{% block vueCdn %}
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+{% endblock %}
+
 {% block content %}
 <div class="bigslam-page-title-wrap  bigslam-style-medium bigslam-center-align">
                 <div class="bigslam-header-transparent-substitute"></div>
@@ -177,4 +182,12 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block vue %}
+<script>
+app=new Vue({
+
+})
+</script>
 {% endblock %}
