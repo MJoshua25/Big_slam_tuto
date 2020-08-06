@@ -3,6 +3,7 @@
 
 {% block vueCdn %}
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -26,56 +27,54 @@
                             <div class="gdlr-core-pbf-element">
                                 <div class="gdlr-core-blog-item gdlr-core-item-pdb clearfix  gdlr-core-style-blog-full" style="padding-bottom: 40px ;">
                                     <div class="gdlr-core-blog-item-holder gdlr-core-js-2 clearfix" data-layout="fitrows">
-                                        {% for article in articles %}
-                                        <div class="gdlr-core-item-list gdlr-core-blog-full  gdlr-core-item-pdlr gdlr-core-style-left">
+                                        <div class="gdlr-core-item-list gdlr-core-blog-full  gdlr-core-item-pdlr gdlr-core-style-left" v-for="article in articles" :key="article.id">
                                             <div class="gdlr-core-blog-thumbnail gdlr-core-media-image  gdlr-core-opacity-on-hover gdlr-core-zoom-on-hover">
-                                                <a href="{% url 'blog:single' article.titre_slug %}"><img src="{{ article.cover.url }}" width="1280" height="580"  alt="">
+                                               <a href="{# {% url 'blog:single' article.titre_slug %}#}"><img v-bind:src="article.cover" width="1280" height="580"  alt="">
                                                     <div class="gdlr-core-sticky-banner gdlr-core-title-font"><i class="fa fa-bolt"></i>Sticky Post</div>
                                                 </a>
                                             </div>
                                             <div class="gdlr-core-blog-date-wrapper gdlr-core-skin-divider">
-                                                <div class="gdlr-core-blog-date-day gdlr-core-skin-caption">{{ article.date_pub|date:"d" }}</div>
+                                                {% comment %}<div class="gdlr-core-blog-date-day gdlr-core-skin-caption">{{ article.date_pub|date:"d" }}</div>
                                                 <div class="gdlr-core-blog-date-month gdlr-core-skin-caption">{{ article.date_pub|date:"M" }}</div>
-                                                <div class="gdlr-core-blog-date-year gdlr-core-skin-caption">{{ article.date_pub|date:"Y" }}</div>
+                                                <div class="gdlr-core-blog-date-year gdlr-core-skin-caption">{{ article.date_pub|date:"Y" }}</div>{% endcomment %}
                                             </div>
                                             <div class="gdlr-core-blog-full-content">
-                                                <h3 class="gdlr-core-blog-title gdlr-core-skin-title" style="font-size: 40px ;font-weight: 800 ;letter-spacing: 0px ;"><a href="{% url 'blog:single' article.titre_slug %}">{{ article.titre }}</a></h3>
+                                                <h3 class="gdlr-core-blog-title gdlr-core-skin-title" style="font-size: 40px ;font-weight: 800 ;letter-spacing: 0px ;"><a href="{% comment %}{% url 'blog:single' article.titre_slug %}{% endcomment %}">${ article.titre }</a></h3>
                                                 <div class="gdlr-core-blog-info-wrapper gdlr-core-skin-divider">
                                                     <span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-author">
                                                         <span class="gdlr-core-head">
                                                             <i class="fa fa-user-o"></i>
                                                         </span>
-                                                        <a href="#" title="Posts by John Smith" rel="author">{{ article.auteur }}</a>
+                                                        <a href="#" title="Posts by John Smith" rel="author">${ article.auteur }</a>
                                                     </span>
                                                     <span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-category">
                                                         <span class="gdlr-core-head">
                                                             <i class="icon_folder-alt"></i>
                                                         </span>
-                                                        <a href="{% url 'blog:home' %}?c={{ article.categorie.libelle }}" rel="tag">{{ article.categorie.libelle }}</a>
+                                                        <a href="{% comment %}{% url 'blog:home' %}?c={{ article.categorie.libelle }}{% endcomment %}" rel="tag">${ article.categorie }</a>
                                                     </span>
                                                     <span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-tag">
                                                     <span class="gdlr-core-head">
                                                         <i class="icon_tags_alt"></i>
                                                     </span>
-                                                    {% for tag in article.tags.all %}
-                                                    <a href="{% url 'blog:home' %}?t={{ tag.libelle }}" rel="tag">{{ tag.libelle }}</a>
-                                                    {% if not forloop.last %}
+                                                    {% comment %}{% for tag in article.tags.all %}{% endcomment %}
+                                                    <a v-for="tag in article.tags" :key="tag.id" href="{% comment %}{% url 'blog:home' %}?t={{ tag.libelle }}{% endcomment %}" rel="tag">${ tag }</a>
+                                                    {% comment %}{% if not forloop.last %}
                                                     <span class="gdlr-core-sep">,</span>
                                                     {% endif %}
-                                                    {% endfor %}
+                                                    {% endfor %}{% endcomment %}
                                                 </span>
                                                     <span class="gdlr-core-blog-info gdlr-core-blog-info-font gdlr-core-skin-caption gdlr-core-blog-info-comment-number">
                                                         <span class="gdlr-core-head">
                                                             <i class="fa fa-comments-o"></i>
                                                         </span>
-                                                        <a href="{% url 'blog:single' article.titre_slug %}#comments">{{ article.getNbCommentaires }} </a>
+{#                                                        <a href="{% url 'blog:single' article.titre_slug %}#comments">{{ article.getNbCommentaires }} </a>#}
                                                     </span>
                                                 </div>
-                                                <div class="gdlr-core-blog-content">{{ article.description }}
-                                                    <div class="clear"></div><a class="gdlr-core-excerpt-read-more gdlr-core-button gdlr-core-rectangle" href="{% url 'blog:single' article.titre_slug %}">Read More</a></div>
+                                                <div class="gdlr-core-blog-content">${ article.description }
+                                                    <div class="clear"></div><a class="gdlr-core-excerpt-read-more gdlr-core-button gdlr-core-rectangle" href="{% comment %}{% url 'blog:single' article.titre_slug %}{% endcomment %}">Read More</a></div>
                                             </div>
                                         </div>
-                                        {% endfor %}
                                     </div>
                                     <div class="gdlr-core-pagination  gdlr-core-style-circle gdlr-core-left-align gdlr-core-item-pdlr"><span aria-current="page" class="page-numbers current">1</span>
                                         <a class="page-numbers" href="page/2/index.htm">2</a>
@@ -189,7 +188,18 @@
 app=new Vue({
     el:"#app",
     data: {
-        message:"hello vue"
+        articles:[],
+        base_url: window.location.protocol + "//" + window.location.host
+    },
+    delimiters : ["${ ", " }"],
+    mounted(){
+      this.getArticles()
+    },
+    methods: {
+        getArticles: function (){
+            axios.get(this.base_url + "/api/article/?format=json")
+            .then(response =>(this.articles = response.data))
+        },
     }
 })
 </script>

@@ -31,7 +31,7 @@ def home_page(request):
     except:
         pass
     data = {
-        'articles': articles,
+        # 'articles': articles,
         'sous_text': sous_text
     }
     return render(request, 'pages/blog/index.html', data)
