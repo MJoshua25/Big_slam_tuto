@@ -15,5 +15,5 @@ urlpatterns = [
     path('', views.home_page, name='home'),
     path('single/<slug:titre_slug>', views.single, name='single'),
     path('fa', views.first_api, name='fa'),
-    path('api/', include('apiApp.blog.apiurls'))
+    path('api/', include('apiApp.urls'))
 ]
